@@ -1,14 +1,13 @@
 # app/agent_runner.py
 import os
-from langchain_openai import ChatOpenAI                     # Corrected import
-from langchain_core.prompts import PromptTemplate             # Corrected import
-from langchain_core.output_parsers import StrOutputParser   # New import for parsing output
+from langchain_openai import ChatOpenAI          
+from langchain_core.prompts import PromptTemplate             
+from langchain_core.output_parsers import StrOutputParser  
 
 from app.tools import web_search_tavily, extract_content_from_url
 
 OPENAI_KEY = os.getenv("OPENAI_API_KEY")
 
-# This instantiation is now correct with the new import
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 SUMMARY_PROMPT = PromptTemplate(
@@ -23,8 +22,6 @@ SUMMARY_PROMPT = PromptTemplate(
     )
 )
 
-# This is the new, modern way to create a chain using LangChain Expression Language (LCEL)
-# It's more flexible and replaces the deprecated LLMChain
 summary_chain = SUMMARY_PROMPT | llm | StrOutputParser()
 
 
