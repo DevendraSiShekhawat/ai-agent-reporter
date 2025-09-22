@@ -76,5 +76,5 @@ No sources were processed for this report.
 
 AI was instrumental in several key parts of this project:
 
-  * **Initial Scaffolding:** An AI assistant was used to help set up the initial project structure, including the FastAPI application, database models (`db.py`), and the basic web endpoints (`main.py`).
+  * **Initial Scaffolding:** An AI assistant was used to help set up the initial project structure, including the FastAPI application, database models (`db.py`).
   * **Code Refinement and Best Practices:** The AI helped refine the code for better performance and readability, for example, by suggesting the use of FastAPI's `BackgroundTasks` to make the report generation asynchronous, which is crucial for a smooth user experience. [cite\_start]It also helped ensure the `requirements.txt` file was complete with all necessary libraries[cite: 1].
