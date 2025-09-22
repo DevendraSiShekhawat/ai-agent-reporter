@@ -14,7 +14,6 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 # Check required API keys
-# Updated the required key from SERPAPI_API_KEY to TAVILY_API_KEY
 required_keys = ["TAVILY_API_KEY", "OPENAI_API_KEY"]
 missing_keys = [key for key in required_keys if not os.getenv(key)]
 
