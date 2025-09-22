@@ -1,0 +1,24 @@
+<!-- app/templates/index.html -->
+<!doctype html>
+<html>
+<head><title>Agent Reports</title></head>
+<body>
+  <h1>Agent Reporter</h1>
+  <form action="/generate" method="post">
+    <input name="query" placeholder="Ask (e.g., Impact of Mediterranean diet on heart health)" size="80"/>
+    <button type="submit">Run</button>
+  </form>
+  {% if error %}
+    <div style="color: red;">{{ error }}</div>
+  {% endif %}
+
+  <h2>Saved reports</h2>
+  <ul>
+    {% for r in reports %}
+      <li><a href="/report/{{r.id}}">{{ r.query }}</a> — {{ r.created_at }}</li>
+    {% else %}
+      <li>No reports yet</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

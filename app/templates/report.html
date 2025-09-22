@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <title>Report {{ report.id }}</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+        .loading-box { border: 1px dashed #ccc; padding: 20px; text-align: center; background-color: #f9f9f9; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(3000deg); } }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #eee; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <a href="/">← back</a>
+    <h1>Report: {{ report.query }}</h1>
+    <p><i>Created at {{ report.created_at }}</i></p>
+
+    {% if 'Generating report' in report.summary %}
+        <div class="loading-box">
+            <h2>{{ report.summary }}</h2>
+            <p>This page will automatically refresh in a few seconds.</p>
+            <div class="spinner"></div>
+        </div>
+        <script>
+            setTimeout(() => {
+                window.location.reload();
+            }, 7000); // Refresh every 7 seconds
+        </script>
+    {% else %}
+        <h2>Summary</h2>
+        <div>{{ report.summary | replace('\n', '<br>') | safe }}</div>
+
+        <h2>Sources</h2>
+        <ul>
+        {% for s in sources %}
+            <li>
+                <a href="{{ s.url }}" target="_blank">{{ s.title or s.url }}</a>
+                — status: {{ s.status }}
+                {% if s.status == 'ok' %}
+                    <div><small>{{ s.snippet }}</small></div>
+                {% endif %}
+            </li>
+        {% else %}
+            <li>No sources were processed for this report.</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

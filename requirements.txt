@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+jinja2
+tavily-python
+trafilatura
+pypdf
+requests
+sqlalchemy
+python-dotenv
+aiohttp
+langchain
+langchain-openai
+langchain-core
